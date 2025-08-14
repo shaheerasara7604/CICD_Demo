@@ -1,8 +1,12 @@
 pipeline {
     agent any
     tools {
-        maven 'Maven 3.9.11'   // Updated Maven version
-        jdk 'JDK 21'           // Keep this as exact name from Jenkins config
+        maven 'Maven 3.9.11'
+        jdk 'JDK 21'
+    }
+    environment {
+        JAVA_HOME = "${tool 'JDK 21'}"
+        PATH = "${env.JAVA_HOME}\\bin;${env.PATH}"
     }
     stages {
         stage('Build') {
